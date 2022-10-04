@@ -1,6 +1,6 @@
-import { Box, Divider, Heading, Text, Tag } from "@chakra-ui/react";
+import { Box, Divider, Heading, Tag, Text } from "@chakra-ui/react";
 
-const SingleTodo = ({ todo }) => {
+const SingleTodo = ({ todo, openHandler }) => {
     const getDateInMonthDayYear = (date) => {
         const d = new Date(date);
         const options = {
@@ -10,7 +10,7 @@ const SingleTodo = ({ todo }) => {
             hour: "numeric",
             minute: "numeric",
         };
-        const n = d.toLocaleDateString("pt-BR", options);
+        const n = d.toLocaleDateString("en-US", options);
         const replase = n.replace(new RegExp(",", "g"), " ");
         return replase;
     };
@@ -23,8 +23,11 @@ const SingleTodo = ({ todo }) => {
             borderRadius="lg"
             overflow="hidden"
             p="4"
+            onClick={() => openHandler(todo)}
         >
-            <Heading size="md" mt="3">{todo.title}</Heading>
+            <Heading size="md" mt="3">
+                {todo.title}
+            </Heading>
             <Tag
                 position="absolute"
                 top="3"
